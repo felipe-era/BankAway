@@ -4,7 +4,7 @@ using BankAway_ATENDIMENTO.BankAway.Exceptions;
 namespace BankAway_ATENDIMENTO.BankAway.Atendimento
 {
     #nullable disable
-    internal  class BankAwayAtendimento
+    internal class BankAwayAtendimento
     {
 
         private List<ContaCorrente> _listaDeContas = new List<ContaCorrente>(){
