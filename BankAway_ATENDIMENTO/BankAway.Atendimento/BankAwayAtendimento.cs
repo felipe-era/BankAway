@@ -1,5 +1,8 @@
 ﻿using BankAway.Modelos.Conta;
 using BankAway_ATENDIMENTO.BankAway.Exceptions;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace BankAway_ATENDIMENTO.BankAway.Atendimento
 {
@@ -19,18 +22,21 @@ namespace BankAway_ATENDIMENTO.BankAway.Atendimento
             try
             {
                 char opcao = '0';
-                while (opcao != '6')
+                while (opcao != '8')
                 {
                     Console.Clear();
-                    Console.WriteLine("===============================");
-                    Console.WriteLine("===       Atendimento       ===");
-                    Console.WriteLine("===1 - Cadastrar Conta      ===");
-                    Console.WriteLine("===2 - Listar Contas        ===");
-                    Console.WriteLine("===3 - Remover Conta        ===");
-                    Console.WriteLine("===4 - Ordenar Contas       ===");
-                    Console.WriteLine("===5 - Pesquisar Conta      ===");
-                    Console.WriteLine("===6 - Sair do Sistema      ===");
-                    Console.WriteLine("===============================");
+                    Console.WriteLine("╔══════════════════════════════╗");
+                    Console.WriteLine("║          Atendimento         ║");
+                    Console.WriteLine("╠══════════════════════════════╣");
+                    Console.WriteLine("║ 1 - Cadastrar Conta          ║");
+                    Console.WriteLine("║ 2 - Listar Contas            ║");
+                    Console.WriteLine("║ 3 - Remover Conta            ║");
+                    Console.WriteLine("║ 4 - Ordenar Contas           ║");
+                    Console.WriteLine("║ 5 - Pesquisar Conta          ║");
+                    Console.WriteLine("║ 6 - Exportar Conta*          ║");
+                    Console.WriteLine("║ 7 - Exportar Conta XML*      ║");
+                    Console.WriteLine("║ 8 - Sair do Sistema          ║");
+                    Console.WriteLine("╚══════════════════════════════╝");
                     Console.WriteLine("\n\n");
                     Console.Write("Digite a opção desejada: ");
                     try
@@ -60,6 +66,12 @@ namespace BankAway_ATENDIMENTO.BankAway.Atendimento
                             PesquisarContas();
                             break;
                         case '6':
+                            ExportarContas();
+                            break;
+                        case '7':
+                            ExportarContasEmXML();
+                            break;
+                        case '8':
                             EncerrarAplicacao();
                             break;
                         default:
@@ -74,6 +86,78 @@ namespace BankAway_ATENDIMENTO.BankAway.Atendimento
             }
         }
 
+        private void ExportarContas()
+        {
+            Console.Clear();
+            Console.WriteLine("╔══════════════════════════════╗");
+            Console.WriteLine("║    EXPORTAR CONTAS          ║");
+            Console.WriteLine("╚══════════════════════════════╝");
+            Console.WriteLine("\n\n");
+
+            if (_listaDeContas.Count <= 0)
+            {
+                Console.WriteLine(".. Não existem dados para exportação");
+                Console.ReadKey();
+            }
+            else
+            {
+                string strJson = JsonConvert.SerializeObject(_listaDeContas, Formatting.Indented);
+                try
+                {
+                    //C:\Users\felip\Desktop\feee
+                    string strPatch = "C:\\Users\\felip\\Desktop\\feee\\tmp\\contas.xml";
+                    FileStream fs = new FileStream(strPatch, FileMode.Create);
+                    using (StreamWriter swContas = new StreamWriter(fs))
+                    {
+                        swContas.WriteLine(strJson);
+                    }
+                    Console.WriteLine($"Arquivo salvo em: {strPatch}");
+                }
+                catch (Exception ex)
+                {
+                    throw new BankAwayException(ex.Message);
+                    Console.ReadKey();
+                }
+            }
+        }
+
+        private void ExportarContasEmXML()
+        {
+            Console.Clear();
+            Console.WriteLine("╔══════════════════════════════╗");
+            Console.WriteLine("║    EXPORTAR CONTAS XML       ║");
+            Console.WriteLine("╚══════════════════════════════╝");
+            Console.WriteLine("\n\n");
+
+            if (_listaDeContas.Count <= 0)
+            {
+                Console.WriteLine(".. Não existem dados para exportação");
+                Console.ReadKey();
+            }
+            else
+            {
+                var contasXML = new XmlSerializer(typeof(List<ContaCorrente>));
+                try
+                {
+                    //C:\Users\felip\Desktop\feee
+                    string strPatch = "C:\\Users\\felip\\Desktop\\feee\\tmp\\contas.xml";
+                    FileStream fs = new FileStream(strPatch, FileMode.Create);
+                    using (StreamWriter swContas = new StreamWriter(fs))
+                    {
+                        contasXML.Serialize(swContas, _listaDeContas);
+                    }
+                    Console.WriteLine($"Arquivo salvo em: {strPatch}");
+                    Console.ReadKey();
+                }
+                catch (Exception ex)
+                {
+                    throw new BankAwayException(ex.Message);
+                    Console.ReadKey();
+                }
+            }
+        }
+
+
         private void EncerrarAplicacao()
         {
             Console.WriteLine("... Encerrando a aplicação ...");
@@ -83,10 +167,10 @@ namespace BankAway_ATENDIMENTO.BankAway.Atendimento
         private void PesquisarContas()
         {
             Console.Clear();
-            Console.WriteLine("===============================");
-            Console.WriteLine("===    PESQUISAR CONTAS     ===");
-            Console.WriteLine("===============================");
-            Console.WriteLine("\n");
+            Console.WriteLine("╔══════════════════════════════╗");
+            Console.WriteLine("║    PESQUISAR CONTAS          ║");
+            Console.WriteLine("╚══════════════════════════════╝");
+            Console.WriteLine("\n\n");
             Console.Write("Deseja pesquisar por (1) NÚMERO DA CONTA ou (2)CPF TITULAR ou " +
                 " (3) Nº AGÊNCIA : ");
             switch (int.Parse(Console.ReadLine()))
