@@ -157,6 +157,10 @@
 
         }
 
+        private ContaCorrente()
+        {
+            //bug?
+        }
 
     }
 }
