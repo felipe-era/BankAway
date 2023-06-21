@@ -21,6 +21,6 @@ namespace BankAway.Modelos.ADM.Funcionarios
 
         public abstract void AumentarSalario();
 
-        protected abstract double getBonificacao();
+        protected internal abstract double getBonificacao();
     }
 }
