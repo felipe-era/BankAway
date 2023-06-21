@@ -8,10 +8,9 @@ namespace BankAway_Modelos.BankAway.Modelos.ADM.Utilitario
 {
     internal class AutenticacaoUtil
     {
-        public bool ValidarSenha(string senhaverdadeira , string senhatentativa)
+        public bool ValidarSenha(string senhaverdadeira, string senhatentativa)
         {
             return senhaverdadeira.Equals(senhatentativa);
         }
-
     }
 }

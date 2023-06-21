@@ -6,7 +6,7 @@ namespace BankAway.Modelos.ADM.Utilitario
     public class ParceiroComercial : IAutenticavel
     {
         public string Senha { get; set; }
-        public AutenticacaoUtil autenticador{ get; set; }
+        AutenticacaoUtil autenticador { get; set; }
 
         public bool Autenticar(string senha)
         {
