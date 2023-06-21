@@ -15,4 +15,10 @@
     <ProjectReference Include="..\BankAway_Modelos\BankAway_Modelos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="BankAway_GeradorChavePix">
+      <HintPath>..\..\..\..\..\source\repos\BankAway_GeradorChavePix\BankAway_GeradorChavePix\bin\Debug\net6.0\BankAway_GeradorChavePix.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

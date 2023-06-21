@@ -1,12 +1,20 @@
 ﻿using BankAway.Modelos.ADM.Funcionarios;
 using BankAway_ATENDIMENTO.BankAway.Atendimento;
+using BankAway_GeradorChavePix;
 using BankAway_Modelos.BankAway.Modelos.ADM.Utilitario;
 
 Console.WriteLine("Boas Vindas ao BankAway, Atendimento.");
-new BankAwayAtendimento().AtendimentoCliente();
+//new BankAwayAtendimento().AtendimentoCliente();
 
+Console.WriteLine(GeradorPix.GetChavePix());
 
+var listaDeChaves = GeradorPix.GetChavePix(10);
 
+foreach (var chave in listaDeChaves)
+{
+    Console.WriteLine(chave);
+
+}
 ////testes proteção de classes
 //public class Estagiario : Funcionario
 //{
