@@ -15,7 +15,7 @@ foreach (var chave in listaDeChaves)
     Console.WriteLine(chave);
 
 }
-////testes proteção de classes
+////testes proteção de classes //processo correto
 //public class Estagiario : Funcionario
 //{
 //    public Estagiario(double salario, string cpf) : base(salario, cpf)
