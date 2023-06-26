@@ -15,6 +15,8 @@ foreach (var chave in listaDeChaves)
     Console.WriteLine(chave);
 
 }
+
+
 ////testes proteção de classes //processo correto
 //public class Estagiario : Funcionario
 //{

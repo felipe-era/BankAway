@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankAway_ATENDIMENTO.BankAway.Exceptions
 {
-
+     
     [Serializable]
     public class BankAwayException : Exception
     {

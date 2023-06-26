@@ -2,6 +2,10 @@
 {
     public class Auxiliar : Funcionario
     {
+        /// <summary>
+        /// Teste subindo doc no vs na real
+        /// </summary>
+        /// <param name="cpf">CPF do usuário</param>
         public Auxiliar(string cpf) : base(2000, cpf)
         {
         }
