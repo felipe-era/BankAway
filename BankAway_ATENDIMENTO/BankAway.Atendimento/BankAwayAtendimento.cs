@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace BankAway_ATENDIMENTO.BankAway.Atendimento
 {
-    #nullable disable
+#nullable disable
     internal class BankAwayAtendimento
     {
 
@@ -15,7 +15,7 @@ namespace BankAway_ATENDIMENTO.BankAway.Atendimento
           new ContaCorrente(95, "951258-X"){Saldo=200,Titular = new Cliente{Cpf="22222",Nome ="Pedro"}},
           new ContaCorrente(94, "987321-W"){Saldo=60,Titular = new Cliente{Cpf="33333",Nome ="Marisa"}}
         };
-           
+
 
         public void AtendimentoCliente()
         {
